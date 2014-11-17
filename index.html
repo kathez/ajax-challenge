@@ -22,17 +22,29 @@
 
                 <form ng-submit="addComment()">
                     <div class="form-group">
+                        <label for="comment-rating">Rating</label>
+                        <rating max="5" ng-model="newComment.rating"></rating>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name"></label>
+                        <input id="name" type="text" class="form-control" placeholder="Your Name"
+                               ng-model="newComment.name"/>
+                    </div>
+
+                    <div class="form-group">
                         <label for="comment-title">Title</label>
                         <input type="text" id="comment-title" class="form-control"
                                 placeholder="title of new comment" ng-model="newComment.title"/>
                     </div>
 
                     <div class="form-group">
-
+                        <label for="comment-content">Comment Content</label>
+                        <input type="text" id="comment-content" class="form-control" ng-model="newComment.content" placeholder="Your comments go here"/>
                     </div>
 
                     <div class="form-group">
-                        <label for="comment-rating">Content</label>
+                        <button type="submit" class="btn btn-primary" ng-disabled="inserting" >Add Comment</button>
 
                     </div>
                 </form>
@@ -48,7 +60,47 @@
 
             <section>
                 <h2>Comments</h2>
-                <!-- 
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Rating</th>
+                        <th>Name</th>
+                        <th>Comment</th>
+                        <th>Votes</th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr ng-repeat="comment in comments">
+                        <td ng-class="{done: comment.done}">{{comment.title}}</td>
+                        <td>
+                            <rating max="5" ng-model="comment.rating" ng-change="updateComment(comment)"
+                                    ng-class="{done: comment.done}" readonly="comment.done"></rating>
+                        </td>
+
+                        <td ng-class="{done: comment.done}">{{comment.name}}</td>
+
+                        <td ng-class="{done: comment.done}">{{comment.content}}</td>
+
+                        <td>
+                            {{comment.votes || 0}}
+                                <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementVotes(comment, 1)"
+                                      ng-class="{done: comment.done}"></span>
+                                <span class="glyphicon glyphicon-thumbs-down" ng-click="incrementVotes(comment, -1)"
+                                      ng-class="{done: comment.done}"></span>
+                        </td>
+
+                        <td>
+                            <input type="checkbox" ng-model="comment.done" ng-change="updateComment(comment)"/>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <!--
                 display existing comments here
                 each comment should also have UI allowing the user to vote up/down the comment
                 as well as delete it

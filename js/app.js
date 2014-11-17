@@ -6,7 +6,7 @@
 
 var commentsUrl = 'https://api.parse.come/1/classes/comments';
 
-angular.module('CommentApp', [ui.bootstrap])
+angular.module('CommentApp', [])
     .config(function($httpProvider) {
         $httpProvider.defaults.headers.common['X-Parse-Application-Id'] = 'ek2oVa8EOZdAc4jOrusIMJQS8TkJwgPQ6kzgLmwU';
         $httpProvider.defaults.headers.common['X-Parse-REST-API-Key'] = 'mu82CmM7Skmh5mtT7kJ9vcXubGvixGSIgSRanvgw';
@@ -28,7 +28,7 @@ angular.module('CommentApp', [ui.bootstrap])
 
         $scope.refreshComments();
 
-        $scope.newComment = {done:false};
+        $scope.newComment = {done: false};
 
         $scope.addComment = function() {
 
