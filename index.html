@@ -6,10 +6,11 @@
         <title>Product Comments</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/main.css">
+
     </head>
     <body>
 
-        <main class="container">
+        <main class="container" ng-app="CommentApp" ng-controller="CommentsController">
             <section>
                 <img src="img/super-bass-o-matic-76.jpg" alt="product picture" class="product-picture">
                 <h1>The Super Bass-o-Matic '76</h1>
@@ -18,7 +19,24 @@
 
             <section>
                 <h2>Add a Comment</h2>
-                <!--  
+
+                <form ng-submit="addComment()">
+                    <div class="form-group">
+                        <label for="comment-title">Title</label>
+                        <input type="text" id="comment-title" class="form-control"
+                                placeholder="title of new comment" ng-model="newComment.title"/>
+                    </div>
+
+                    <div class="form-group">
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="comment-rating">Content</label>
+
+                    </div>
+                </form>
+                <!--
                 put a form here for entering a new comment
                 the user must select a rating, and enter a name, title, and comment body
                 before the comment can be saved to the server
