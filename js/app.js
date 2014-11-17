@@ -39,7 +39,6 @@ angular.module('CommentApp', ["ui.bootstrap"])
                 .success(function(responseData) {
                     $scope.newComment.objectId = responseData.objectId;
                     $scope.comments.push($scope.newComment);
-                    $scope.newComment = {done: false};
                 })
                 .error(function(err) {
                     $scope.errorMessage = err;
@@ -56,6 +55,19 @@ angular.module('CommentApp', ["ui.bootstrap"])
                 })
                 .finally(function() {
                     $scope.updating = false;
+                })
+        };
+
+        $scope.deleteComment = function(comment) {
+            $http.delete(commentsUrl + '/' + comment.objectId)
+                .success(function(responseData) {
+
+                })
+                .error(function(err) {
+                    $scope.errorMessage = err;
+                })
+                .finally(function() {
+                    $scope.deleting = false;
                 })
         };
 
