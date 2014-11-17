@@ -20,7 +20,7 @@
             <section>
                 <h2>Add a Comment</h2>
 
-                <form ng-submit="addComment()">
+                <form class="container" ng-submit="addComment()">
                     <div class="form-group">
                         <label for="comment-rating">Rating</label>
                         <rating max="5" ng-model="newComment.rating"></rating>
@@ -28,6 +28,7 @@
 
                     <div class="form-group">
                         <label for="name"></label>
+
                         <input id="name" type="text" class="form-control" placeholder="Your Name"
                                ng-model="newComment.name"/>
                     </div>
@@ -74,6 +75,7 @@
                     </thead>
 
                     <tbody>
+                    <!--we have ng-repeat here to repeat tr. try to ng-repeat whole div as the address book challenge-->
                     <tr ng-repeat="comment in comments">
                         <td ng-class="{done: comment.done}">{{comment.title}}</td>
                         <td>

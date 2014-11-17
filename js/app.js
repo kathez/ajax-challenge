@@ -4,9 +4,9 @@
     define your module and controllers here
 */
 
-var commentsUrl = 'https://api.parse.come/1/classes/comments';
+var commentsUrl = 'https://api.parse.com/1/classes/comments';
 
-angular.module('CommentApp', [])
+angular.module('CommentApp', ["ui.bootstrap"])
     .config(function($httpProvider) {
         $httpProvider.defaults.headers.common['X-Parse-Application-Id'] = 'ek2oVa8EOZdAc4jOrusIMJQS8TkJwgPQ6kzgLmwU';
         $httpProvider.defaults.headers.common['X-Parse-REST-API-Key'] = 'mu82CmM7Skmh5mtT7kJ9vcXubGvixGSIgSRanvgw';
@@ -14,7 +14,8 @@ angular.module('CommentApp', [])
     .controller('CommentsController', function($scope,$http) {
         $scope.refreshComments = function() {
             $scope.loading = false;
-            $http.get(commentsUrl + '?where={"done":false}')
+            $http.get(commentsUrl)
+                /// https://api.parse.com/1/classes/comments
                 .success(function(data) {
                     $scope.comments = data.results;
                 })
@@ -26,10 +27,12 @@ angular.module('CommentApp', [])
                 });
         };
 
+
         $scope.refreshComments();
 
-        $scope.newComment = {done: false};
+        $scope.newComment = {};
 
+        //work on DELETE, button to delete
         $scope.addComment = function() {
 
             $http.post(commentsUrl, $scope.newComment)
