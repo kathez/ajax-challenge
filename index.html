@@ -61,46 +61,50 @@
 
             <section>
                 <h2>Comments</h2>
+                <div ng-repeat="comment in comments">
+                    <rating max="5" ng-model="comment.rating" ng-change="updateComment(comment)"
+                            ng-class="{done: comment.done}" readonly="comment.done"></rating>
+                </div>
 
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Rating</th>
-                        <th>Name</th>
-                        <th>Comment</th>
-                        <th>Votes</th>
-                        <th>Delete</th>
-                    </tr>
-                    </thead>
+                <!--<table class="table">-->
+                    <!--<thead>-->
+                    <!--<tr>-->
+                        <!--<th>Title</th>-->
+                        <!--<th>Rating</th>-->
+                        <!--<th>Name</th>-->
+                        <!--<th>Comment</th>-->
+                        <!--<th>Votes</th>-->
+                        <!--<th>Delete</th>-->
+                    <!--</tr>-->
+                    <!--</thead>-->
 
-                    <tbody>
-                    <!--we have ng-repeat here to repeat tr. try to ng-repeat whole div as the address book challenge-->
-                    <tr ng-repeat="comment in comments">
-                        <td ng-class="{done: comment.done}">{{comment.title}}</td>
-                        <td>
-                            <rating max="5" ng-model="comment.rating" ng-change="updateComment(comment)"
-                                    ng-class="{done: comment.done}" readonly="comment.done"></rating>
-                        </td>
+                    <!--<tbody>-->
+                    <!--&lt;!&ndash;we have ng-repeat here to repeat tr. try to ng-repeat whole div as the address book challenge&ndash;&gt;-->
+                    <!--<tr ng-repeat="comment in comments">-->
+                        <!--<td ng-class="{done: comment.done}">{{comment.title}}</td>-->
+                        <!--<td>-->
+                            <!--<rating max="5" ng-model="comment.rating" ng-change="updateComment(comment)"-->
+                                    <!--ng-class="{done: comment.done}" readonly="comment.done"></rating>-->
+                        <!--</td>-->
 
-                        <td ng-class="{done: comment.done}">{{comment.name}}</td>
+                        <!--<td ng-class="{done: comment.done}">{{comment.name}}</td>-->
 
-                        <td ng-class="{done: comment.done}">{{comment.content}}</td>
+                        <!--<td ng-class="{done: comment.done}">{{comment.content}}</td>-->
 
-                        <td>
-                            {{comment.votes || 0}}
-                                <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementVotes(comment, 1)"
-                                      ng-class="{done: comment.done}"></span>
-                                <span class="glyphicon glyphicon-thumbs-down" ng-click="incrementVotes(comment, -1)"
-                                      ng-class="{done: comment.done}"></span>
-                        </td>
+                        <!--<td>-->
+                            <!--{{comment.votes || 0}}-->
+                                <!--<span class="glyphicon glyphicon-thumbs-up" ng-click="incrementVotes(comment, 1)"-->
+                                      <!--ng-class="{done: comment.done}"></span>-->
+                                <!--<span class="glyphicon glyphicon-thumbs-down" ng-click="incrementVotes(comment, -1)"-->
+                                      <!--ng-class="{done: comment.done}"></span>-->
+                        <!--</td>-->
 
-                        <td>
-                            <button class="btn" ng-click="deleteComment(comment)">Delete</button>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                        <!--<td>-->
+                            <!--<button class="btn" ng-click="deleteComment(comment)">Delete</button>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--</tbody>-->
+                <!--</table>-->
 
                 <!--
                 display existing comments here
