@@ -13,9 +13,8 @@ angular.module('CommentApp', ["ui.bootstrap"])
     })
     .controller('CommentsController', function($scope,$http) {
         $scope.refreshComments = function() {
-            $scope.loading = false;
+            $scope.loading = true;
             $http.get(commentsUrl)
-                /// https://api.parse.com/1/classes/comments
                 .success(function(data) {
                     $scope.comments = data.results;
                 })
@@ -45,19 +44,6 @@ angular.module('CommentApp', ["ui.bootstrap"])
                 });
         };
 
-        $scope.updateComment = function(comment) {
-            $http.put(commentsUrl + '/' + comment.objectId, comment)
-                .success(function() {
-
-                })
-                .error(function(err) {
-                    $scope.errorMessage = err;
-                })
-                .finally(function() {
-                    $scope.updating = false;
-                })
-        };
-
         $scope.deleteComment = function(comment) {
             $http.delete(commentsUrl + '/' + comment.objectId)
                 .success(function(responseData) {
@@ -67,8 +53,33 @@ angular.module('CommentApp', ["ui.bootstrap"])
                     $scope.errorMessage = err;
                 })
                 .finally(function() {
+                    $scope.refreshComments();
                     $scope.deleting = false;
-                })
+                });
         };
+
+        $scope.incrementVotes = function(comment, amount) {
+            if (comment.votes + amount >= 0) {
+                $http.put(commentsUrl + '/' + comment.objectId, {
+                    votes: {
+                        __op: 'Increment',
+                        amount: amount
+                    }
+                })
+                    .success(function(responseData) {
+                        comment.votes = responseData.votes;
+                        if (comment.votes < 0) {
+                            comment.votes = 0;
+                        }
+                    })
+                    .error(function(err) {
+                        console.log(err);
+                    })
+                    .finally(function() {
+                        $scope.updating= false;
+                    });
+            }
+
+        }; //incrementVotes()
 
     });

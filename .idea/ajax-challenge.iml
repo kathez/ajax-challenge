@@ -8,6 +8,7 @@
     <orderEntry type="library" name="angular" level="application" />
     <orderEntry type="library" name="lodash" level="application" />
     <orderEntry type="library" name="angular" level="application" />
+    <orderEntry type="library" name="angular" level="application" />
+    <orderEntry type="library" name="lodash" level="application" />
   </component>
 </module>
-

@@ -1,0 +1,77 @@
+CREATE FUNCTION add(integer, integer) 	//argument types
+RETURN integer 							//return type
+	AS 'select $1 + $2;' 				//logic/SQL statement
+	LANGUAGE SQL 						//language type (SQL, C, etc)
+	IMMUTABLE  							//hint on query optimizer 
+	RETURNS NULL ON NULL INPUT
+
+
+CREATE FUNCTION inc(val integer) RETURNS 
+integer AS 
+	'select $1 + 1;' 
+	LANGUAGE SQL
+
+CREATE FUNCTION inc(val integer) RETURNS 
+integer AS 
+	'select val + 1;' 
+	LANGUAGE SQL
+
+DROP FUNCTION inc(integer);
+
+
+CREATE OR REPLACE FUNCTION even (i int)
+RETURNS booleans AS $$
+	DECLARE 
+		tmp int;
+	BEGIN
+		tmp := i % 2;
+		IF tmp = 0 THEN RETURN true;
+		ELSE RETURN false;
+		END IF;
+	END
+$$ LANGUAGE plpgsql;
+
+SELECT even(3), even(42)
+
+
+Create a function to return a hashtag's id, if it exists
+If it doesn't exist, add it to the table and return its id 
+
+CREATE FUNCTION findHashtag(ht varchar)
+RETURNS integer AS $$
+	'select id from hashtags where hashtag=ht;'
+	LANGUAGE SQL; 
+
+CREATE FUNCTION findUrl(i varchar)
+RETURNS integer AS
+	'select url_id from urls where url=i;'
+   LANGUAGE SQL;
+
+--- create trigger when update balance 
+CREATE TRIGGER check_update
+	BEFORE UPDATE accounts
+	FOR EACH ROW
+	EXECUTE PROCEDURE
+check_account_update(); 
+
+
+--- create trigger, this one execute only when balance is changed 
+CREATE TRIGGER check_update
+	BEFORE UPDATE OF balance ON accounts
+	FOR EACH ROW
+	EXECUTE PROCEDURE
+check_account_update(); 
+
+--- lab 7: Q: create a trigger to update the number of hashtags in the summary table 
+summary table
+tweets 		int
+hashtags 	int
+urls 		int
+mentions 	int
+
+CREATE FUNCTION incMentions()
+RETURNS INTEGER AS
+	'update summary set mentions=mentions+1;'
+	LANGUAGE SQL; 
+
+

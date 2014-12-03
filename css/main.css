@@ -1,5 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Ubuntu:400,500);
-
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+@import url(http://fonts.googleapis.com/css?family=Ek+Mukta:200,400);
 body {
     font-family: 'Ubuntu', 'Helvetica Neue', 'Helvetica', sans-serif;
     font-weight: 400;
@@ -11,3 +12,37 @@ body {
     margin-right: 10px;
 }
 
+.comment {
+   margin-bottom: 2em;
+}
+
+.comment_title {
+    font-weight: 700;
+    font-family: 'Monstserrat', 'Helvetica', sans-serif;
+}
+
+.comment_rating, .comment_title {
+    float: left;
+    margin-right: 0.5em;
+}
+
+.comment_name {
+    clear: both;
+    color: blue;
+}
+
+.by {
+    color: #888;
+}
+
+.comment_content {
+    font-size: 16px;
+    color: #333;
+    font-family: 'Ek Mukta', Arial, sans-serif;
+    font-weight: 200;
+}
+
+.comment .btn {
+    border-color: #888888;
+    background-color: #888888;
+}
