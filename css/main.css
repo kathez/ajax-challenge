@@ -8,8 +8,16 @@ body {
 
 .product-picture {
     float: left;
-    height: 130px;
+    height: 180px;
     margin-right: 10px;
+    margin-bottom: 0;
+    margin-top: 20px;
+}
+
+#product {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin-top: 1em;
 }
 
 .comment {
@@ -46,3 +54,14 @@ body {
     border-color: #888888;
     background-color: #888888;
 }
+
+@media (min-width: 992px) {
+    .product-picture {
+        margin-top: 20px;
+        min-height: 300px;
+    }
+}
+
+
+
+
